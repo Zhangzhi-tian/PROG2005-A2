@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>Angular Inventory System (Part 2)</h1>
+
+  <!-- 添加商品表单 -->
+  <div class="form-section">
+    <h3>Add New Item</h3>
+    <input 
+      [(ngModel)]="newItem.name" 
+      placeholder="Item Name" 
+      required
+    >
+    <input 
+      [(ngModel)]="newItem.category" 
+      placeholder="Category" 
+      required
+    >
+    <input 
+      type="number" 
+      [(ngModel)]="newItem.price" 
+      placeholder="Price ($)" 
+      step="0.01"
+      required
+    >
+    <button (click)="addItem()">Add Item</button>
+  </div>
+
+  <!-- 商品列表 -->
+  <div class="list-section">
+    <h3>Inventory List</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price ($)</th>
+          <th>In Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.price.toFixed(2) }}</td>
+          <td>{{ item.inStock ? '✅ Yes' : '❌ No' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 总价值统计 -->
+  <div class="total-section">
+    <h3>Total Inventory Value: ${{ calculateTotal().toFixed(2) }}</h3>
+  </div>
+</div>
